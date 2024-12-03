@@ -11,8 +11,7 @@ def find_multiplicaton_or_skip_operatins(file):
 def atoi(num_str):
     return int("".join(a for a in num_str if a.isdigit()))
 
-def execute_multiplication(mul_str, skip=False):
-    if skip: return 0
+def execute_multiplication(mul_str):
     a, b = mul_str.split(",")
     return atoi(a)*atoi(b)
 
@@ -28,12 +27,11 @@ def main():
         match instruction:
             case "do()":
                 skip = False
-                print(instruction)
             case "don't()":
                 skip = True
-                print(instruction)
             case _:
-                day3_part2 += execute_multiplication(instruction, skip)
+                if not skip:
+                    day3_part2 += execute_multiplication(instruction)
     print(day3_part1)
     print(day3_part2)
     
